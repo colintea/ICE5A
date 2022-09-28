@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href=""
+	th:href="@{css/styles.css}">
+</head>
+<body>
+	<h2>HELLO</h2>
+	<table>
+		<tr th:each="aCourse, iter : ${courseList}"
+			th:style="${iter.even}?'background-color: #D3D3D3': _">
+			<td th:text="${aCourse.id}"
+				th:style="${aCourse.id < 10}?'color: red':'color: green'">55</td>
+			<td th:text=${aCourse.prefix}>PROG</td>
+			<td th:text="${aCourse.code}"></td>
+			<td th:text="${aCourse.name}"></td>
+		</tr>
+	</table>
+
+	<form method="post" action="#" th:action="@{/addCourse}">
+		ID: <input type="number" name="id" /><br> 
+		Prefix: <input type="text" name="prefix" /><br> 
+		Code: <input type="number"name="code" /><br>
+		Name: <input type="text" name="name" /><br>
+		<input type="submit" value="Add Course!" />
+	</form>
+</body>
+</html>
