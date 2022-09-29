@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ca.sheridancollege.teasdaco.beans.Course;
 
@@ -21,5 +22,16 @@ public class CourseController {
 	}
 	
 	@PostMapping("/addCourse")
-	public String 
+	public String getPost(@RequestParam Long id, 
+							@RequestParam String prefix,
+							@RequestParam String code,
+							@RequestParam String name, 
+							Model model) {
+
+		Course course = new Course(id, prefix, code, name);
+		courseList.add(course);
+		model.addAttribute("courseList", courseList);
+
+		return "index";
+	}
 }
